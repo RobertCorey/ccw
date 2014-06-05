@@ -1,0 +1,2 @@
+# This file will ignore specific files so they are not tracked in git
+.DS_Store
