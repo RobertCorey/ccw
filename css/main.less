@@ -1,72 +1,155 @@
-/* Variables */
+/*Fonts*/
 
+@import url('http://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+/*
+==================================================================================
+/*
+
+/* Variables */
 
 /*Colors*/
 @red: #8f1f09;
-@white: #ffffff;
+@white: #fcecec;
 @black: #252525;
+@defaultFont: 'Montserrat', sans-serif;
 
 /*Media Queries*/
 @tablet: 768px;
 @desktop: 992px;
 @lgdesktop: 1200px;
 
+/*
+==================================================================================
+/*
 
-header {
+/*Mixins*/
+.font-awesome {
 	background-color: @red;
-	height: 150px;
+	padding: 30px;
+	font-size: 50px;
+	color: @white;
+	border-radius: 50%;
+}
 
-	nav {
+body {
+	font-family: @defaultFont;
+	text-align: center;
+
+	header {
 		background-color: @red;
-		position: absolute;
-		top: 150px;
+		height: 150px;
 
-		&.navbar {
-			border-radius: 0px;
-		}
+		nav {
+			background-color: @red;
+			position: absolute;
+			top: 150px;
 
-		&.navbar-inverse {
-			background-color: rgba(143, 31, 9, 0.69);
-			border: none;
-			.navbar-nav {
-				a {
-					color: @white;
-					&:hover,
-					&:active,
-					&:focus {
+			&.navbar {
+				border-radius: 0px;
+			}
+
+			&.navbar-inverse {
+				background-color: rgba(143, 31, 9, 0.69);
+				border: none;
+				.navbar-nav {
+					a {
 						color: @white;
+						&:hover,
+						&:active,
+						&:focus {
+							color: @white;
+						}
+					}
+				}
+			}
+
+			ul {
+				width:100%;
+
+				li {
+					width: 100%;
+					text-align: center;
+					@media (min-width: @tablet) {
+						width: 25%;
 					}
 				}
 			}
 		}
+	}
 
-		ul {
-			width:100%;
+	section {
+		padding: 80px 0;
+		text-align: center;
 
-			li {
-				width: 100%;
-				text-align: center;
-				@media (min-width: @tablet) {
-					width: 25%;
+		&#hero {
+			color: @white;
+			background: linear-gradient(
+							      rgba(143, 31, 9, 0.5), 
+							      rgba(37, 37, 37, 0.9)
+							    ), 
+									url(../img/marketing.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: top center;
+		}
+
+		&#who-we-are {
+			background-color: @white;
+
+			div {
+				&.col-sm-4 {
+					margin-top: 30px;
+				}
+			}
+
+			i {
+				.font-awesome;
+			}
+
+			.btn {
+				background-color: @black;
+				border-radius: 1px;
+				color: @red;
+				padding: 8px 20px;
+				text-transform: uppercase;
+				margin-top: 16px;
+			}
+		}
+
+		&#contact-us {
+			background-color: @black;
+			color: @white;
+
+			ul {
+				list-style-type: none;
+				padding: 0;
+				&.social-icons{
+					width: 100%;
+					li {
+						width: 100%;
+						float: left;
+						display:block;
+						@media (min-width: @tablet) {
+							width: 25%;
+						}
+						i {
+							.font-awesome;
+						}
+					}
 				}
 			}
 		}
 	}
-}
 
-section {
-	margin-top: 80px;
-
-	&#who-we-are {
-		text-align: center;
-
-		.btn {
-			background-color: @black;
-			border-radius: 1px;
-			color: @red;
-			padding: 8px 20px;
-			text-transform: uppercase;
-			margin-top: 16px;
+	footer {
+		background-color: @red;
+		color: @white;
+		padding: 20px 0;
+		font-size: 12px;
+		@media (min-width: @tablet) {
+			font-size: 14px;
 		}
 	}
 }
