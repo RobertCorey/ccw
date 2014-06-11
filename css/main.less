@@ -4,7 +4,7 @@
 
 /*
 ==================================================================================
-/*
+*/
 
 /* Variables */
 
@@ -21,9 +21,10 @@
 
 /*
 ==================================================================================
-/*
+*/
 
 /*Mixins*/
+
 .font-awesome {
 	background-color: @red;
 	padding: 30px;
@@ -32,6 +33,11 @@
 	border-radius: 50%;
 }
 
+/*
+==================================================================================
+*/
+
+
 body {
 	font-family: @defaultFont;
 	text-align: center;
@@ -39,6 +45,21 @@ body {
 	header {
 		background-color: @red;
 		height: 150px;
+
+		.contact-header {
+			display:none;
+			@media (min-width: @tablet) {
+				display:block;
+				position:absolute;
+				right: 5%;
+				top: 16px;
+				list-style: none;
+				text-align: left;
+				color: @white;
+				font-size: 12px;
+				line-height: 1.75;
+			}
+		}
 
 		nav {
 			background-color: @red;
@@ -70,6 +91,7 @@ body {
 				li {
 					width: 100%;
 					text-align: center;
+					list-style-type: none;
 					@media (min-width: @tablet) {
 						width: 25%;
 					}
@@ -146,7 +168,7 @@ body {
 	footer {
 		background-color: @red;
 		color: @white;
-		padding: 20px 0;
+		padding: 10px 0 0 0;
 		font-size: 12px;
 		@media (min-width: @tablet) {
 			font-size: 14px;
