@@ -1,6 +1,7 @@
 /*Fonts*/
 
 @import url('http://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 
 /*
 ==================================================================================
@@ -9,15 +10,26 @@
 /* Variables */
 
 /*Colors*/
-@red: #8f1f09;
-@white: #fcecec;
-@black: #252525;
+@red: #791401;
+@white: #ffffff;
+@black: #1b1b1b;
+
+/*Fonts*/
 @defaultFont: 'Montserrat', sans-serif;
+@fw-normal: 400;
+@fw-bold: 700;
 
 /*Media Queries*/
 @tablet: 768px;
 @desktop: 992px;
 @lgdesktop: 1200px;
+
+/*Font Awesome Icons*/
+@phone: "\f095";
+@fax: "\f1ac";
+@email: "\f0e0";
+@pin: "\f041";
+
 
 /*
 ==================================================================================
@@ -25,12 +37,27 @@
 
 /*Mixins*/
 
-.font-awesome {
-	background-color: @red;
-	padding: 30px;
-	font-size: 50px;
-	color: @white;
+.fa(@icon: ''; @font-size: ''; @line-height: inherit; @color: @white;) {
+	content: @icon;
+	display: inline-block;
+	color: @color;
+	font-family: FontAwesome;
+	font-size: @font-size;
+	font-style: normal;
+	font-weight: normal;
+	line-height: @line-height;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.fa-circle(@width: 150px; @height: 150px; @line-height:150px; @color:@white; @bgcolor: @red; @font-size: 50px;) {
+	background-color: @bgcolor;
+	color: @color;
+	font-size: @font-size;
 	border-radius: 50%;
+	width: @width;
+	height: @height;
+	line-height: @line-height;
 }
 
 /*
@@ -43,8 +70,11 @@ body {
 	text-align: center;
 
 	header {
+		position: relative;
 		background-color: @red;
 		height: 150px;
+		-webkit-box-shadow: 0 4px 3px rgba(0,0,0,.69);
+		box-shadow: 0 4px 3px rgba(0,0,0,.69);
 
 		.contact-header {
 			display:none;
@@ -57,7 +87,36 @@ body {
 				text-align: left;
 				color: @white;
 				font-size: 12px;
-				line-height: 1.75;
+				line-height: 1.8;
+
+				li{
+					&:before{
+						.fa(@font-size: 16px; @line-height: 1.2; @color: @black;);
+						position: absolute;
+						left: 16px;
+					}
+					&.phone {
+						&:before{
+							content:@phone;
+						};
+					}
+					&.fax {
+						&:before{
+							content:@fax;
+						};
+					}
+					&.email {
+						&:before{
+							content:@email;
+						};
+					}
+					&.pin {
+						&:before{
+							content: @pin;
+							left: 19px;
+						};
+					}
+				}
 			}
 		}
 
@@ -71,8 +130,21 @@ body {
 			}
 
 			&.navbar-inverse {
-				background-color: rgba(143, 31, 9, 0.69);
-				border: none;
+				background-color: @black;
+				border:none;
+				@media (min-width: @tablet) {
+					background-color: rgba(27, 27, 27, 0.85);
+				}
+				
+				.navbar-toggle {
+					border: none;
+					&:hover,
+					&:focus,
+					&:active {
+						background: none;
+					}
+				}
+
 				.navbar-nav {
 					a {
 						color: @white;
@@ -93,7 +165,7 @@ body {
 					text-align: center;
 					list-style-type: none;
 					@media (min-width: @tablet) {
-						width: 25%;
+						width: 33.333%;
 					}
 				}
 			}
@@ -101,25 +173,43 @@ body {
 	}
 
 	section {
-		padding: 80px 0;
+		padding: 40px 0;
 		text-align: center;
 
+		h1 {
+			font-size: 46px;
+			font-weight: @fw-bold;
+		}
+
 		&#hero {
+			padding: 80px 0;
 			color: @white;
-			background: linear-gradient(
-							      rgba(143, 31, 9, 0.5), 
-							      rgba(37, 37, 37, 0.9)
-							    ), 
-									url(../img/marketing.jpg);
+			background: linear-gradient(rgba(78, 43, 37, 0.65), rgba(27, 27, 27, 1)), url(../img/marketing.jpg);
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: top center;
+
+			h1 {
+				font-size: 28px;
+				font-weight: @fw-normal;
+				span {
+					font-size: 54px;
+					font-weight: @fw-bold;
+				}
+				@media (min-width: @tablet) {
+					font-size: 36px;
+				}
+			}
+
+			p {
+				margin: 40px 0;
+			}
 		}
 
-		&#who-we-are {
-			background-color: @white;
-
+		&#legal-services {
+			background-color: @black;
+			color: @white;
 			div {
 				&.col-sm-4 {
 					margin-top: 30px;
@@ -127,21 +217,64 @@ body {
 			}
 
 			i {
-				.font-awesome;
+				.fa-circle(@color:@white; @bgcolor: @red);
 			}
 
 			.btn {
-				background-color: @black;
+				background-color: @red;
 				border-radius: 1px;
-				color: @red;
+				color: @white;
 				padding: 8px 20px;
 				text-transform: uppercase;
 				margin-top: 16px;
 			}
 		}
 
+		&#who-we-are {
+			background-color: @white;
+
+			#who-we-are-intro {
+				p {
+					margin: 40px 0;
+				}
+			}
+
+			.lawyer {
+				border-bottom:1px solid @black;
+				margin:20px; 
+				@media (min-width: @tablet) {
+					border: none;
+					margin: 0;
+				}
+				img {
+				border-radius: 50%;
+				}
+				p,li {
+					text-align: left;
+					font-size: 12px;
+				}
+				ul {
+					padding-left: 0;
+					li {
+						list-style-type: none;
+					}
+				}
+				h3 {
+					margin-bottom: 20px;
+					@media (min-width: @tablet) {
+						font-size:20px;
+					}
+				}
+				h4 {
+					@media (min-width: @tablet) {
+						text-align: left;
+					}
+				}
+			}
+		}
+
 		&#contact-us {
-			background-color: @black;
+			background-color: @red;
 			color: @white;
 
 			ul {
@@ -150,14 +283,17 @@ body {
 				&.social-icons{
 					width: 100%;
 					li {
-						width: 100%;
+						width: 25%;
 						float: left;
 						display:block;
 						@media (min-width: @tablet) {
 							width: 25%;
 						}
 						i {
-							.font-awesome;
+							.fa-circle(@width:50px; @height:50px; @line-height:50px; @bgcolor: @black; @font-size: 25px;);
+							@media (min-width: @tablet) {
+								.fa-circle(@width:100px; @height:100px; @line-height:100px; @bgcolor: @black);
+							}
 						}
 					}
 				}
@@ -166,12 +302,9 @@ body {
 	}
 
 	footer {
-		background-color: @red;
+		background-color: @black;
 		color: @white;
 		padding: 10px 0 0 0;
-		font-size: 12px;
-		@media (min-width: @tablet) {
-			font-size: 14px;
-		}
+		font-size: 10px;
 	}
 }
