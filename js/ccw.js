@@ -6,10 +6,19 @@ document.getElementById("date").innerHTML = copyrightYear;
 
 // Contact Form Validation
 
-// Name
-document.theform.clientname.onkeyup = function () {
-  var clientName = document.theform.name.value;
+//Variables
+var clientName = document.theform.name.value,
+    phoneField = document.theform.phone.value, // create a variable for the input field
+    phonePattern = new RegExp("\\d{3}[\\-]\\d{3}[\\-]\\d{4}", "i"), // set the requested pattern by creating a new RegExp, include i for case insensitivity
+    valid = phoneField.search(phonePattern) >= 0,
+    emailAddress = document.theform.email.value,
+    emailPattern = new RegExp("\\S+@\\S+", "i"),
+    validEmail = emailAddress.search(emailPattern) >= 0,
+    comments = document.theform.comments.value;
 
+// Name
+document.theform.name.onkeyup = function () {
+  var clientName = document.theform.name.value;
   if (clientName.length <= 2) {
     document.getElementById("nameerror").innerHTML = "A valid name is required, and it must be at least 3 characters.";
   } else {
@@ -17,9 +26,8 @@ document.theform.clientname.onkeyup = function () {
   }
 };
 
-document.theform.clientname.onblur = function () {
+document.theform.name.onblur = function () {
   var clientName = document.theform.name.value;
-
   if (clientName.length <= 2) {
     document.getElementById("nameerror").innerHTML = "A valid name is required, and it must be at least 3 characters.";
   } else {
@@ -32,7 +40,6 @@ document.theform.phone.onkeyup = function () {
   var phoneField = document.theform.phone.value, // create a variable for the input field
       phonePattern = new RegExp("\\d{3}[\\-]\\d{3}[\\-]\\d{4}", "i"), // set the requested pattern by creating a new RegExp, include i for case insensitivity
       valid = phoneField.search(phonePattern) >= 0;
-
   if (!(valid)) {
     document.getElementById("phoneerror").innerHTML = "A valid 10 digit phone number is required in this format: 123-456-7890.";
   } else {
@@ -41,10 +48,9 @@ document.theform.phone.onkeyup = function () {
 };
 
 document.theform.phone.onblur = function () {
-  var phoneField = document.theform.phone.value,
-      phonePattern = new RegExp("\\d{3}[\\-]\\d{3}[\\-]\\d{4}", "i"),
+  var phoneField = document.theform.phone.value, // create a variable for the input field
+      phonePattern = new RegExp("\\d{3}[\\-]\\d{3}[\\-]\\d{4}", "i"), // set the requested pattern by creating a new RegExp, include i for case insensitivity
       valid = phoneField.search(phonePattern) >= 0;
-
   if (!(valid)) {
     document.getElementById("phoneerror").innerHTML = "A valid 10 digit phone number is required in this format: 123-456-7890.";
   } else {
@@ -57,7 +63,6 @@ document.theform.email.onkeyup = function () {
   var emailAddress = document.theform.email.value,
       emailPattern = new RegExp("\\S+@\\S+", "i"),
       validEmail = emailAddress.search(emailPattern) >= 0;
-
   if (!(validEmail)) {
     document.getElementById("emailerror").innerHTML = "A valid email is required, and it must be at least 3 characters.";
   } else {
@@ -66,10 +71,9 @@ document.theform.email.onkeyup = function () {
 };
 
 document.theform.email.onblur = function () {
-  var emailAddress = document.theform.email.value,
+    var emailAddress = document.theform.email.value,
       emailPattern = new RegExp("\\S+@\\S+", "i"),
       validEmail = emailAddress.search(emailPattern) >= 0;
-
   if (!(validEmail)) {
     document.getElementById("emailerror").innerHTML = "A valid email is required, and it must be at least 3 characters.";
   } else {
@@ -80,7 +84,6 @@ document.theform.email.onblur = function () {
 // Comments/Questions
 document.theform.comments.onkeyup = function () {
   var comments = document.theform.comments.value;
-
   if (comments.length <= 5) {
     document.getElementById("commenterror").innerHTML = "A brief description of your inquiry is required.";
   } else {
@@ -90,10 +93,64 @@ document.theform.comments.onkeyup = function () {
 
 document.theform.comments.onblur = function () {
   var comments = document.theform.comments.value;
-
   if (comments.length <= 5) {
     document.getElementById("commenterror").innerHTML = "A brief description of your inquiry is required.";
   } else {
     document.getElementById("commenterror").innerHTML = "";
   }
 };
+
+// Name
+  function validateName() {
+    if (clientName.length <= 2) {
+      document.getElementById("nameerror").innerHTML = "A valid name is required, and it must be at least 3 characters.";
+      return false;
+    } else {
+      document.getElementById("nameerror").innerHTML = "";
+      return true;
+    }
+  }
+
+// Phone Number
+  function validatePhone() {
+    if (!(valid)) {
+      document.getElementById("phoneerror").innerHTML = "A valid 10 digit phone number is required in this format: 123-456-7890.";
+      return false;
+    } else {
+      document.getElementById("phoneerror").innerHTML = "";
+      return true;
+    }
+  }
+
+
+// Email Address
+  function validateEmail() {
+    if (!(validEmail)) {
+      document.getElementById("emailerror").innerHTML = "A valid email is required, and it must be at least 3 characters.";
+      return false;
+    } else {
+      document.getElementById("emailerror").innerHTML = "";
+      return true;
+    }
+  }
+
+
+// Comments/Questions
+  function validateComments() {
+    if (comments.length <= 5) {
+      document.getElementById("commenterror").innerHTML = "A brief description of your inquiry is required.";
+      return false;
+    } else {
+      document.getElementById("commenterror").innerHTML = "";
+      return true;
+    }
+  }
+
+function validationSubmit() {
+  if (validateName() && validatePhone() && validateEmail() && validateComments()) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}

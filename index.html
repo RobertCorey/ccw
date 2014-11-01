@@ -321,7 +321,7 @@
           <div class="col-md-8 col-md-offset-2">
             <div class="row">
               <div class="col-sm-6">
-                <form name="theform" id="contact_form" action="form.php" method="POST">
+                <form name="theform" id="contact_form" action="form.php" method="POST" onsubmit="return validationSubmit()">
                   <div class="form-group">
                     <i class="fa fa-user"></i>
                     <label for="name">Name</label>
@@ -399,28 +399,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/ccw.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
-    <script src="js/angular-scroll.min.js"></script>
-    <script>
-      angular.module('myApp', ['duScroll']).
 
-        controller('MyCtrl', function($scope, $document) {
-
-          $scope.toTheTop = function() {
-
-            $document.scrollTop(0, 5000).then(function() {
-              console && console.log('You just scrolled to the top!');
-            });
-          }
-
-          var section2 = angular.element(document.getElementById('section-2'));
-          $scope.toSection2 = function() {
-            $document.scrollTo(section2, 0, 1000);
-          }
-
-        }
-
-      );
-    </script>-->
   </body>
 </html>

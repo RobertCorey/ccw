@@ -21,16 +21,16 @@ if (strlen($email) < 3) {
 	$pass = false;
 }
 
-if (strlen($comments) < 10) {
+if (strlen($comments) < 5) {
 	$pass = false;
 }
 
 if (!$pass){
-	header('location:http://www.google.com');
+	header('location:http://www.fails.com');
 } else {
-	$to = 'info@grossilaw.com';
-	$from = 'noreply@';
-	$subject = 'Ciccone, Couglin & Waldman Inquiry';
+	$to = 'adam.m.grossi@gmail.com';
+	$from = 'noreply@cicconelaw.com';
+	$subject = 'Ciccone, Couglin & Waldman Representation Inquiry';
 
 	$message = 'Name: '.$name.PHP_EOL;
 	$message .= 'Phone: '.$phone.PHP_EOL;
@@ -38,7 +38,7 @@ if (!$pass){
 	$message .= 'Comments: '.$comments.PHP_EOL;
 
 	@mail($to, $subject, $message, 'From:'.$from.'\n\n');
-	header('location:thank-you.html');
+	header('location:http://www.success.com');
 }
 
 ?>
